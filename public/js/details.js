@@ -10,30 +10,33 @@ function showDetail() {
 }
 
 function renderRecipe(recipe) {
-  const { image, title, description } = recipe;
+  const { image, title, author, description } = recipe;
 
-  recipeEl = document.createElement("div");
-  recipeEl.innerHTML = `
-    <img src="img/${image}" />
-    <h3>${title}</h3>
-    <p>${description}</p>
-    <a href="/">Back</a>
-    `;
   editForm.title.value = title;
+  editForm.author.value = author === undefined ? "Anonymous" : author;
   editForm.image.value = image;
   editForm.description.value = description;
 
-  document.querySelector(".recipe").append(recipeEl);
+  const recipeContainer = document.querySelector(".recipe");
+
+  recipeContainer.innerHTML = `
+    <img src="img/${image}" />
+    <h3>${title}</h3>
+    <h4>${author === undefined ? "Anonymous" : author}</h4>
+    <p>${description}</p>
+    <a href="/">Back</a>
+    `;
 }
 
 const updateRecipe = (event) => {
   event.preventDefault();
   const urlParams = new URLSearchParams(window.location.search);
   const recipeId = urlParams.get("recipe");
-  const { title, image, description } = event.target;
+  const { title, author, image, description } = event.target;
   const updatedRecipe = {
     _id: recipeId,
     title: title.value,
+    author: author.value,
     image: image.value,
     description: description.value,
   };

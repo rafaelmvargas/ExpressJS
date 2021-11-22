@@ -27,14 +27,17 @@ function addRecipe(event) {
 function renderRecipes(recipes) {
   recipes.forEach((recipe) => {
     // destructure
-    const { _id, title, image, description } = recipe;
+    const { _id, title, author, image, description } = recipe;
     recipeEl = document.createElement("div");
+
     recipeEl.innerHTML = `
     <img src="img/${image}" />
     <h3><a href="detail.html?recipe=${_id}">${title}</a></h3>
+    <h4>${author === undefined ? "Anonymous" : author}</h4>
     <p>${description}</p>
     <button class="delete" data-id=${_id} href="#">Delete</button>
   `;
+
     return document.querySelector(".recipes").append(recipeEl);
   });
 }

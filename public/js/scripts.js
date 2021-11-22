@@ -7,9 +7,10 @@ function getRecipes() {
 
 function addRecipe(event) {
   event.preventDefault();
-  const { title, image, description } = event.target;
+  const { title, author, image, description } = event.target;
   const recipe = {
     title: title.value,
+    author: author.value,
     image: image.value,
     description: description.value,
   };
@@ -25,7 +26,7 @@ function addRecipe(event) {
 }
 
 function renderRecipes(recipes) {
-  recipes.forEach((recipe) => {
+  recipes.reverse().forEach((recipe) => {
     // destructure
     const { _id, title, author, image, description } = recipe;
     recipeEl = document.createElement("div");

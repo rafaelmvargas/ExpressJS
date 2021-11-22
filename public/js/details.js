@@ -9,8 +9,8 @@ function showDetail() {
     .then((recipe) => renderRecipe(recipe));
 }
 
-function renderRecipe(recipe) {
-  const { image, title, author, description } = recipe;
+function renderRecipe({ image, title, author, description }) {
+
 
   editForm.title.value = title;
   editForm.author.value = author === undefined ? "Anonymous" : author;

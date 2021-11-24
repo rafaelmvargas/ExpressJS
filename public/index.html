@@ -9,7 +9,14 @@
   <body>
     <h1>Recipes!</h1>
 
+    <form action="/api/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" accept="image/png" />
+      <input type="text" placeholder="File name" name="filename" />
+      <button type="submit">Upload</button>
+    </form>
+
     <form id="addForm">
+<<<<<<< HEAD
       <input
         type="text"
         placeholder="Recipe Title"
@@ -19,9 +26,14 @@
       <input type="text" placeholder="Author" name="author" value="Author" />
       <input type="text" placeholder="Image" name="image" value="lasagna.png" />
 
+=======
+      <input type="text" placeholder="Recipe Title" name="title" />
+      <input type="text" placeholder="Image" name="image" />
+
+      <input type="text" placeholder="Recipe Year" name="year" />
+>>>>>>> ordering
       <textarea type="text" placeholder="Description" name="description">
-Lasagna noodles piled high and layered full of three kinds of cheese to go along with the perfect blend of meaty and zesty, tomato pasta sauce all loaded with herbs.</textarea
-      >
+      </textarea>
       <button type="submit">Submit</button>
     </form>
 

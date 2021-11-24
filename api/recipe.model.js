@@ -6,6 +6,7 @@ const RecipeSchema = new mongoose.Schema({
   author: String,
   description: String,
   image: String,
+  year: String
 });
 
 const Recipe = mongoose.model("Recipe", RecipeSchema);

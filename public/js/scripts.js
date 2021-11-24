@@ -8,11 +8,7 @@ function getRecipes() {
 
 function addRecipe(event) {
   event.preventDefault();
-<<<<<<< HEAD
-  const { title, author, image, description } = event.target;
-=======
   const { title, image, year, description } = event.target;
->>>>>>> ordering
   const recipe = {
     title: title.value,
     author: author.value,
@@ -34,18 +30,13 @@ function addRecipe(event) {
 function renderRecipes(recipes) {
   recipes.reverse().forEach((recipe) => {
     // destructure
-<<<<<<< HEAD
-    const { _id, title, author, image, description } = recipe;
-=======
     const { _id, title, image, year, description } = recipe;
->>>>>>> ordering
     recipeEl = document.createElement("div");
 
     recipeEl.innerHTML = `
     <img src="img/${image}" />
     <h3><a href="detail.html?recipe=${_id}">${title}</a></h3>
-    <h4>${author === undefined ? "Anonymous" : author}</h4>
-    <p>${description}</p>
+        <p>${description}</p>
     <p>${year}</p>
     <button class="delete" data-id=${_id} href="#">Delete</button>
   `;

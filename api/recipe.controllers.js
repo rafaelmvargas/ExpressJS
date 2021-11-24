@@ -28,13 +28,27 @@ exports.delete = function (req, res) {
   });
 };
 
-
 exports.update = function (req, res) {
   console.log(req.body);
   const id = req.params.id;
   Recipe.findByIdAndUpdate(id, req.body, { new: true }, (err, response) => {
     if (err) return console.log(err);
     res.send(response);
+  });
+};
+
+exports.upload = function (req, res) {
+  console.log(req.files);
+  if (Object.keys(req.files).length == 0) {
+    return res.status(400).send("No files were uploaded.");
+  }
+  let file = req.files.file;
+  file.mv(`./public/img/${req.body.filename}`, (err) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.json({ file: `public/img/${req.body.filename}` });
+    console.log(`res.json `, res.json);
   });
 };
 

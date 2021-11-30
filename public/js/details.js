@@ -9,12 +9,11 @@ function showDetail() {
     .then((recipe) => renderRecipe(recipe));
 }
 
-function renderRecipe({ image, title, author, description }) {
-
-
+function renderRecipe({ image, title, author, year, description }) {
   editForm.title.value = title;
   editForm.author.value = author === undefined ? "Anonymous" : author;
   editForm.image.value = image;
+  editForm.year.value = year;
   editForm.description.value = description;
 
   const recipeContainer = document.querySelector(".recipe");
@@ -22,7 +21,7 @@ function renderRecipe({ image, title, author, description }) {
   recipeContainer.innerHTML = `
     <img src="img/${image}" />
     <h3>${title}</h3>
-    <h4>${author === undefined ? "Anonymous" : author}</h4>
+    <h4>${author === undefined ? "Anonymous" : author} in ${year}</h4>
     <p>${description}</p>
     <a href="/">Back</a>
     `;
@@ -32,12 +31,13 @@ const updateRecipe = (event) => {
   event.preventDefault();
   const urlParams = new URLSearchParams(window.location.search);
   const recipeId = urlParams.get("recipe");
-  const { title, author, image, description } = event.target;
+  const { title, author, image, year, description } = event.target;
   const updatedRecipe = {
     _id: recipeId,
     title: title.value,
     author: author.value,
     image: image.value,
+    year: year.value,
     description: description.value,
   };
   fetch(`api/recipes/${recipeId}`, {
